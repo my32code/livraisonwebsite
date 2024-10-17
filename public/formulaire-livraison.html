@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lancement course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(252, 244, 234);
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgb(252, 236, 215);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button, input, textarea {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .result, .confirmation {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .confirmation {
+            display: none;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .confirm {
+            background-color: #28a745;
+            color: white;
+        }
+        .cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            margin-right: 8px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lancer une course...</h1>
+
+        <div class="section">
+            <h2><i class="fas fa-user"></i> Informations de l'Expéditeur</h2>
+            <div>
+                <label for="expediteurNom">Nom de l'expéditeur :</label>
+                <input type="text" id="expediteurNom" placeholder="Nom de l'expéditeur">
+            </div>
+
+            <div>
+                <label for="expediteurTelephone">Numéro de téléphone :</label>
+                <input type="tel" id="expediteurTelephone" placeholder="Téléphone de l'expéditeur">
+            </div>
+
+            <div>
+                <label for="descriptionObjet">Description de l’objet :</label>
+                <textarea id="descriptionObjet" rows="3" placeholder="Description de l’objet"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-box"></i> Détails du Colis</h2>
+            <div>
+                <label for="parcelType">Type de colis :</label>
+                <select id="parcelType" name="parcelType" required>
+                    <option value="Marchandises d'entreprise">Marchandises d'entreprise</option>
+                    <option value="Expédition">Expédition</option>
+                    <option value="Accessoires">Accessoires</option>
+                    <option value="Repas de restaurant">Repas de restaurant</option>
+                    <option value="Livraison rapide">Livraison rapide</option>
+                    <option value="Options personnalisées">Options personnalisées</option>
+                    <option value="Achat au supermarché">Achat au supermarché</option>
+                    <option value="Récupération de colis">Récupération de colis</option>
+                    <option value="Paiement de factures">Paiement de factures</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="depart">Point de Collecte :</label>
+                <select id="depart" onchange="calculatePrice()">
+                    <option value="Calavi">Calavi</option>
+                    <option value="Cotonou">Cotonou</option>
+                    <option value="Ouedo">Ouedo</option>
+                    <option value="Akpakpa">Akpakpa</option>
+                    <option value="Hevié">Hevié</option>
+                    <option value="Pahou">Pahou</option>
+                    <option value="Ouidah">Ouidah</option>
+                    <option value="Glo">Glo</option>
+                    <option value="Akassato">Akassato</option>
+                    <option value="Gbetagbo">Gbetagbo</option>
+                    <option value="Tokan">Tokan</option>
+                    <option value="Tankpe">Tankpe</option>
+                    <option value="Maria-Gléta">Maria-Gléta</option>
+                    <option value="Godomey">Godomey</option>
+                    <option value="Cococodji">Cococodji</option>
+                    <option value="Cocotomey">Cocotomey</option>
+                    <option value="Tori">Tori</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="arrivee">Destination :</label>
+                <select id="arrivee" onchange="calculatePrice()">
+                    <option value="Calavi">Calavi</option>
+                    <option value="Cotonou">Cotonou</option>
+                    <option value="Ouedo">Ouedo</option>
+                    <option value="Akpakpa">Akpakpa</option>
+                    <option value="Hevié">Hevié</option>
+                    <option value="Pahou">Pahou</option>
+                    <option value="Ouidah">Ouidah</option>
+                    <option value="Glo">Glo</option>
+                    <option value="Akassato">Akassato</option>
+                    <option value="Gbetagbo">Gbetagbo</option>
+                    <option value="Tokan">Tokan</option>
+                    <option value="Tankpe">Tankpe</option>
+                    <option value="Maria-Gléta">Maria-Gléta</option>
+                    <option value="Godomey">Godomey</option>
+                    <option value="Cococodji">Cococodji</option>
+                    <option value="Cocotomey">Cocotomey</option>
+                    <option value="Tori">Tori</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-user-plus"></i> Informations du Destinataire</h2>
+            <div>
+                <label for="destinataireNom">Nom du destinataire :</label>
+                <input type="text" id="destinataireNom" placeholder="Nom du destinataire">
+            </div>
+
+            <div>
+                <label for="destinataireTelephone">Numéro de téléphone :</label>
+                <input type="tel" id="destinataireTelephone" placeholder="Téléphone du destinataire">
+            </div>
+
+            <div>
+                <label for="destinataireAdresse">Adresse détaillée :</label>
+                <textarea id="destinataireAdresse" rows="3" placeholder="Adresse du destinataire"></textarea>
+            </div>
+        </div>
+
+        <div class="result" id="result"></div>
+
+        <div class="confirmation" id="confirmation">
+            <p>Confirmez-vous cette course ?</p>
+            <button class="btn confirm" onclick="sendWhatsApp()">Confirmer</button>
+            <button class="btn cancel" onclick="cancelRide()"><a href="index.html" style="color: white; text-decoration: none;">Annuler</a></button>
+        </div>
+
+        <div class="result" id="confirmationResult"></div>
+    </div>
+
+    <script>
+        const tarifs = {
+            "Calavi": {
+                "Cotonou": 1000, "Calavi": 700, "Ouedo": 700, "Akpakpa": 1500, "Hevié": 1200,
+                "Pahou": 1500, "Ouidah": 3000, "Glo": 1500, "Akassato": 1000, "Gbetagbo": 1200,
+                "Tokan": 700, "Tankpe": 700, "Maria-Gléta": 700, "Godomey": 1000, "Cococodji": 1200,
+                "Cocotomey": 1000, "Tori": 2000
+            },
+            "Cotonou": {
+                "Calavi": 1000, "Ouedo": 1300, "Akpakpa": 800, "Hevié": 900, "Pahou": 1500,
+                "Ouidah": 1000, "Glo": 1500, "Akassato": 1200, "Gbetagbo": 1000, "Tokan": 1300,
+                "Tankpe": 700, "Maria-Gléta": 900, "Godomey": 1300, "Cococodji": 1100, "Cocotomey": 1200,
+                "Tori": 2000
+            }
+        };
+
+        function calculatePrice() {
+            const depart = document.getElementById("depart").value;
+            const arrivee = document.getElementById("arrivee").value;
+            const price = tarifs[depart][arrivee];
+            const resultDiv = document.getElementById("result");
+            if (price) {
+                resultDiv.innerHTML = `<h2>Le tarif de livraison est : <strong>${price} FCFA</strong></h2>`;
+                document.getElementById("confirmation").style.display = "block";
+            } else {
+                resultDiv.innerHTML = "<h2>Aucun tarif disponible pour cette route.</h2>";
+            }
+        }
+
+        function sendWhatsApp() {
+            // Récupérer les valeurs des champs
+            const expediteurNom = document.getElementById("expediteurNom").value;
+            const expediteurTelephone = document.getElementById("expediteurTelephone").value;
+            const descriptionObjet = document.getElementById("descriptionObjet").value;
+            const parcelType = document.getElementById("parcelType").value;
+            const depart = document.getElementById("depart").value;
+            const arrivee = document.getElementById("arrivee").value;
+            const destinataireNom = document.getElementById("destinataireNom").value;
+            const destinataireTelephone = document.getElementById("destinataireTelephone").value;
+            const destinataireAdresse = document.getElementById("destinataireAdresse").value;
+            
+            // Créer le message à envoyer via WhatsApp
+            const message = `Nouvelle course :%0A` +
+                            `Expéditeur : ${expediteurNom}%0A` +
+                            `Téléphone de l'expéditeur : ${expediteurTelephone}%0A` +
+                            `Description de l'objet : ${descriptionObjet}%0A` +
+                            `Type de colis : ${parcelType}%0A` +
+                            `Point de collecte : ${depart}%0A` +
+                            `Destination : ${arrivee}%0A` +
+                            `Nom du destinataire : ${destinataireNom}%0A` +
+                            `Téléphone du destinataire : ${destinataireTelephone}%0A` +
+                            `Adresse du destinataire : ${destinataireAdresse}`;
+            
+            // Numéro WhatsApp où envoyer le message (modifier avec ton numéro)
+            const numero = "22961622199"; // Numéro avec le code pays
+            
+            // Construire l'URL WhatsApp
+            const whatsappUrl = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+            
+            // Ouvrir WhatsApp avec le message pré-rempli
+            window.open(whatsappUrl, "_blank");
+        }
+
+        function cancelRide() {
+            document.getElementById("confirmation").style.display = "none";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
