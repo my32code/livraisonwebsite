@@ -210,6 +210,9 @@
         }
 
         function sendWhatsApp() {
+            // Numéro WhatsApp où envoyer le message (avec le bon code pays, ici Bénin)
+            const numero = "22961622199"; // Assure-toi que ce numéro est correct
+
             // Récupérer les valeurs des champs
             const expediteurNom = document.getElementById("expediteurNom").value;
             const expediteurTelephone = document.getElementById("expediteurTelephone").value;
@@ -220,28 +223,36 @@
             const destinataireNom = document.getElementById("destinataireNom").value;
             const destinataireTelephone = document.getElementById("destinataireTelephone").value;
             const destinataireAdresse = document.getElementById("destinataireAdresse").value;
-            
+
             // Créer le message à envoyer via WhatsApp
-            const message = `Nouvelle course :%0A` +
-                            `Expéditeur : ${expediteurNom}%0A` +
-                            `Téléphone de l'expéditeur : ${expediteurTelephone}%0A` +
-                            `Description de l'objet : ${descriptionObjet}%0A` +
-                            `Type de colis : ${parcelType}%0A` +
-                            `Point de collecte : ${depart}%0A` +
-                            `Destination : ${arrivee}%0A` +
-                            `Nom du destinataire : ${destinataireNom}%0A` +
-                            `Téléphone du destinataire : ${destinataireTelephone}%0A` +
-                            `Adresse du destinataire : ${destinataireAdresse}`;
-            
-            // Numéro WhatsApp où envoyer le message (modifier avec ton numéro)
-            const numero = "22961622199"; // Numéro avec le code pays
-            
-            // Construire l'URL WhatsApp
+            const message = `
+            Nouvelle Course :
+
+            🔹 *Expéditeur* :
+            - Nom : ${expediteurNom}
+            - Téléphone : ${expediteurTelephone}
+
+            🔹 *Détails du Colis* :
+            - Type : ${parcelType}
+            - Description : ${descriptionObjet}
+
+            🔹 *Livraison* :
+            - Point de Collecte : ${depart}
+            - Destination : ${arrivee}
+
+            🔹 *Destinataire* :
+            - Nom : ${destinataireNom}
+            - Téléphone : ${destinataireTelephone}
+            - Adresse : ${destinataireAdresse}
+
+            Merci d'avoir choisi notre service de livraison !
+            `;
+
+            // Encoder le message pour l'URL
             const whatsappUrl = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
-            
-            // Ouvrir WhatsApp avec le message pré-rempli
             window.open(whatsappUrl, "_blank");
-        }
+}
+
 
         function cancelRide() {
             document.getElementById("confirmation").style.display = "none";
