@@ -18,7 +18,7 @@ const Header = () => {
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img src="/assets/img/gallery/Cap.PNG" height="50" alt="logo" />
-          Ras'Services
+          Rasgonde Express
         </Link>
         
         <button 

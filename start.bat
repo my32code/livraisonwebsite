@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo    Ras'Services - Application React
+echo    Rasgonde Express - Application React
 echo ========================================
 echo.
 echo Installation des dependances...
